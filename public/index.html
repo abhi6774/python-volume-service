@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Control System</title>
+
+    <style>
+        * {
+            font-family: sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        .container {
+            margin: auto;
+            margin-top: 40px;
+            display: flex;
+            max-width: 400px;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+
+
+            button {
+                padding: 10px 20px;
+                min-width: 200px;
+            }
+
+            div {
+                display: flex;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Control System</h1>
+
+    <div class="container">
+        <button id="vol-up">Volume Up</button>
+        <button id="vol-down">Volume Down</button>
+        <button id="vol-mute">Mute</button>
+        <button id="next">Next</button>
+        <button id="prev">Prev</button>
+        <button id="playpause">Play/Pause</button>
+        <button id="full_screen">Full Screen</button>
+        
+        <div>
+            <button id="back5s">Back 5s</button>
+            <button id="skip5s">Skip 5s</button>
+        </div>
+    </div>
+
+    <script>
+
+        const volUp = document.getElementById("vol-up");
+        const voldown = document.getElementById("vol-down");
+        const volMute = document.getElementById("vol-mute");
+        const next = document.getElementById("next");
+        const prev = document.getElementById("prev");
+        const playpause = document.getElementById("playpause");
+        const full_screen = document.getElementById("full_screen");
+        const skip5s = document.getElementById("skip5s");
+        const back5s = document.getElementById("back5s");
+
+        async function runSystemFunction(perform) {
+            const result = await fetch(perform);
+            console.log(result);
+        }
+
+        volUp.onclick = () => runSystemFunction("/volumeup");
+        voldown.onclick = () => runSystemFunction("/volumedown");
+        playpause.onclick = () => runSystemFunction("/playpause");
+        prev.onclick = () => runSystemFunction("/prev");
+        next.onclick = () => runSystemFunction("/next");
+        volMute.onclick = () => runSystemFunction("/mutevolume");
+        full_screen.onclick = () => runSystemFunction("/full_screen");
+        back5s.onclick = () => runSystemFunction("/back5s");
+        skip5s.onclick = () => runSystemFunction("/skip5s");
+    </script>
+
+</body>
+</html>
